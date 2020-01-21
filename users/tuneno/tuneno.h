@@ -65,3 +65,58 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [CAPS]=ACTION_TAP_DANCE_DOUBLE(KC_TAB,KC_CAPS),
   [EXIT]= ACTION_TAP_DANCE_DOUBLE(KC_ESC,CLOSE)
 };
+
+// Macros
+// Macro Establishment
+bool process_record_user(uint16_t keycode, keyrecord_t *record) 
+{
+	switch (keycode) 
+	{
+		case RIP:
+			if (record->event.pressed) 
+			{
+				// when keycode RIP is pressed
+				SEND_STRING(SS_DOWN(X_LCTRL) SS_TAP(X_A) SS_UP(X_LCTRL) SS_TAP(X_DELETE));
+			} 
+			break;
+
+		case PREONIC:
+			if (record->event.pressed)
+			{
+				// when keycode PREONIC is pressed
+				SEND_STRING("cd /c/qmk_firmware/qmk_firmware/" SS_TAP(X_ENTER) "make preonic/rev3:nickjschaeffer" SS_TAP(X_ENTER));
+			}
+			break;
+
+		case HIDEOUT:
+			if (record->event.pressed)
+			{
+				// when keycode HIDEOUT is pressed
+				SEND_STRING(SS_TAP(X_ENTER) "/hideout" SS_TAP(X_ENTER));
+			}
+			break;
+
+		case FLASK:
+			if (record->event.pressed)
+			{
+				// when keycode PREONIC is pressed
+				SEND_STRING(SS_TAP(X_Q) SS_TAP(X_W) SS_TAP(X_E) SS_TAP(X_R) SS_TAP(X_T));
+			}
+			break;
+		case TRADE:
+			if (record->event.pressed)
+			{
+				// when keycode PREONIC is pressed
+				SEND_STRING(SS_TAP(X_ENTER) SS_DOWN(X_LCTRL) SS_TAP(X_V) SS_UP(X_LCTRL) SS_TAP(X_ENTER));
+			}
+			break;
+		case REMAINING:
+			if (record->event.pressed)
+			{
+				// when keycode HIDEOUT is pressed
+				SEND_STRING(SS_TAP(X_ENTER) "/remaining" SS_TAP(X_ENTER));
+			}
+			break;
+	}
+	return true;
+};
