@@ -31,6 +31,8 @@ enum custom_keycodes {
   TRADE,
   REMAINING,
   GLOVIA,
+  IRTOG,
+
 };
 
 // Key Combo Definitions
@@ -50,6 +52,8 @@ enum custom_keycodes {
 #define CTLENT CTL_T(KC_ENT) // Enter on tap & Control on hold (for split spacebar)
 #define BKRAISE LT(_RAISE,KC_BSPC) // Backspace on tap & Raise layer on hold
 #define TSKMNGR LCA(KC_DEL) // Control + Alt + Delete = Task Manager
+#define IRTOG LSFT(LALT(KC_F10)) // Toggle Geforce Experience Instant Replay
+#define IRREC LALT(KC_F10) // Record clip on Geforce Experience clip
 
 // Encoder Layer asks
 #define MODS_ALT_MASK (MOD_BIT(KC_LALT)) // Make ALT layer for encoder use 
