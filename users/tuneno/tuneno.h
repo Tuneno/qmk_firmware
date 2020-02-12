@@ -2,7 +2,7 @@
 #include QMK_KEYBOARD_H
 #pragma once
 
-#include "wrappers.h"
+// #include "wrappers.h"
 
 enum userspace_layers {
     _QWERTY,
@@ -30,6 +30,7 @@ enum custom_keycodes {
   FLASK,
   TRADE,
   REMAINING,
+  GLOVIA,
 };
 
 // Key Combo Definitions
@@ -56,15 +57,20 @@ enum custom_keycodes {
 #define MODS_GUI_MASK (MOD_BIT(KC_LGUI)) // Make GUI alyer for encoder use
 
 // Tap Dancing
+
+#define TAPPING_TERM 200
+
 enum {
   CAPS= 0,
   EXIT  
 };
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+qk_tap_dance_action_t tap_dance_actions[] = 
+{
   [CAPS]=ACTION_TAP_DANCE_DOUBLE(KC_TAB,KC_CAPS),
   [EXIT]= ACTION_TAP_DANCE_DOUBLE(KC_ESC,CLOSE)
 };
+
 
 // Macros
 // Macro Establishment
@@ -115,6 +121,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 			{
 				// when keycode HIDEOUT is pressed
 				SEND_STRING(SS_TAP(X_ENTER) "/remaining" SS_TAP(X_ENTER));
+			}
+			break;
+		case GLOVIA:
+			if (record->event.pressed)
+			{
+				// when keycode HIDEOUT is pressed
+				SEND_STRING("nschaef" SS_TAP(X_TAB) "Gunner2!" SS_TAP(X_ENTER));
 			}
 			break;
 	}

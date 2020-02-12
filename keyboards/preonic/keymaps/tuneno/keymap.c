@@ -16,7 +16,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 [_LOWER] = LAYOUT_preonic_grid( \
-  _______, _______, _______, _______, _______, _______, _______, KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, _______, \
+  _______, GLOVIA,  _______, _______, _______, _______, _______, KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, _______, \
   CLOSE,   SWAP_L,  SNAP_L,  SNAP_R,  SWAP_R,  _______, _______, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, KC_TRNS,  \
   WINCLS,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ENT,  _______, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, _______, \
   MINALL,  KC_HOME, MIN,     MAX,     KC_END,  _______, _______, KC_P1,   KC_P2,   KC_P3,   KC_ENT,  _______, \
@@ -51,14 +51,14 @@ void encoder_update_user(uint8_t index, bool clockwise)
 	{
 			if (clockwise)
 			{
+				register_code(KC_LSFT);
 				register_code(KC_TAB);
+				unregister_code(KC_LSFT);
 				unregister_code(KC_TAB);
 			} 
 			else 
 			{
-				register_code(KC_LSFT);
 				register_code(KC_TAB);
-				unregister_code(KC_LSFT);
 				unregister_code(KC_TAB);
 			}
 	} 
@@ -68,14 +68,14 @@ void encoder_update_user(uint8_t index, bool clockwise)
 			{
 				if (clockwise) 
 				{
+					register_code(KC_LSFT);
 					register_code(KC_TAB);
+					unregister_code(KC_LSFT);
 					unregister_code(KC_TAB);
 				} 
 				else 
 				{
-					register_code(KC_LSFT);
 					register_code(KC_TAB);
-					unregister_code(KC_LSFT);
 					unregister_code(KC_TAB);
 				}
 			}
@@ -86,16 +86,16 @@ void encoder_update_user(uint8_t index, bool clockwise)
 				if (clockwise)
 				{
 					register_code(KC_LCTL);
-					register_code(KC_RGHT);
+					register_code(KC_LEFT);
 					unregister_code(KC_LCTL);
-					unregister_code(KC_RGHT);
+					unregister_code(KC_LEFT);
 				}
 				else
 				{
 					register_code(KC_LCTL);
-					register_code(KC_LEFT);
+					register_code(KC_RGHT);
 					unregister_code(KC_LCTL);
-					unregister_code(KC_LEFT);
+					unregister_code(KC_RGHT);
 				}
 			} 
 			else 
@@ -104,11 +104,11 @@ void encoder_update_user(uint8_t index, bool clockwise)
 				{
 					if (clockwise) 
 					{
-						tap_code(KC_VOLU);
+						tap_code(KC_VOLD);
 					}
 					else
 					{
-						tap_code(KC_VOLD);
+						tap_code(KC_VOLU);
 					}
 				}
 /*				else
@@ -130,13 +130,13 @@ void encoder_update_user(uint8_t index, bool clockwise)
 					{
 						if (clockwise)
 						{
-							register_code(KC_PGDN);
-							unregister_code(KC_PGDN);
+							register_code(KC_PGUP);
+							unregister_code(KC_PGUP);
 						}
 						else
 						{
-							register_code(KC_PGUP);
-							unregister_code(KC_PGUP);
+							register_code(KC_PGDN);
+							unregister_code(KC_PGDN);
 						}
 					}
 				}

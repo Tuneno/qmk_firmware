@@ -1,66 +1,12 @@
 // Mega Iris Layout
 
-#include QMK_KEYBOARD_H
+#include "tuneno.h"
 
 extern keymap_config_t keymap_config;
 
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
-
-enum custom_keycodes {
-  POP=SAFE_RANGE,
-  RIP,
-  CLOSE,
-  SNAP_L,
-  SNAP_R,
-  MIN,
-  MAX,
-  WINCLS,
-  SWAP_L,
-  SWAP_R,
-  MINALL,
-  RAISE,
-  LOWER,
-  SHFT,
-  GLOVIA
-};
-
-// Macro Definition
-#define CLOSE LALT(KC_F4) // Kill application
-#define SNAP_L LGUI(KC_LEFT) // Snap window to left side of display
-#define SNAP_R LGUI(KC_RGHT) // Snap window to right side of display
-#define MIN LGUI(KC_DOWN) // Shrink window
-#define MAX LGUI(KC_UP) // Maximize window
-#define WINCLS LCTL(KC_W) // Close a single web browser window
-#define SWAP_L SGUI(KC_LEFT) // Swap application to left display
-#define SWAP_R SGUI(KC_RGHT) // Swap application to right display
-#define MINALL LGUI(KC_M) // Minimize all open applications 
-#define RAISE MO(_RAISE) // Raise Layer
-#define LOWER MO(_LOWER) // Lower Layer
-#define SHFT OSM(MOD_LSFT) //OSM Left Shift
-#define TSKMNGR LCA(KC_DEL) // Control + Alt + Delete = Task Manager
-#define LTHUMB	LSFT_T(KC_SPC) // Space on hold, left shift on taps
-#define RTHUMB LCTL_T(KC_BSPC) //Right thumb key with shift on tap and left control on hold
-#define SHOT SGUI(KC_S) // Quick macro to do the nice Windows screenshot
-
-// RGB Definition
-
-// Encoder Stuff
-#define MODS_ALT_MASK (MOD_BIT(KC_LALT)) // Make ALT layer for encoder use 
-#define MODS_CTRL_MASK (MOD_BIT(KC_LCTL)) // Make CTRL layer for encoder use
-#define MODS_GUI_MASK (MOD_BIT(KC_LGUI)) // Make GUI alyer for encoder use
-
-// Tap Dancing
-enum {
-  CAPS= 0,
-  EXIT  
-};
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  [CAPS]=ACTION_TAP_DANCE_DOUBLE(KC_TAB,KC_CAPS),
-  [EXIT]= ACTION_TAP_DANCE_DOUBLE(KC_ESC,CLOSE)
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -74,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      SHFT,     KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    _______,           _______,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LGUI, LOWER,   KC_SPC,                    RTHUMB,  RAISE,   KC_LALT
+                                    KC_LGUI, LOWER,   KC_SPC,                    KC_LCTL,  RAISE,   KC_LALT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -82,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      _______, GLOVIA,  KC_MPRV, KC_MNXT, KC_MPLY, RESET,                              _______, KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     CLOSE,   SWAP_L,  SNAP_L,   SNAP_R,  SWAP_R, SHOT,                               _______, KC_7,     KC_8,    KC_9,   KC_ENT, KC_BSPC,
+     CLOSE,   SWAP_L,  SNAP_L,   SNAP_R,  SWAP_R, _______,                            _______, KC_7,     KC_8,    KC_9,   KC_ENT, KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      WINCLS,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ENT,                             _______, KC_P4,   KC_P5,   KC_P6,   KC_PPLS,  _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -94,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, _______, _______, _______, _______, RGB_TOG,                             RESET,   _______,  _______, _______, _______, _______,
+     _______, _______, _______, _______, _______, _______,                             RESET,   _______,  _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -116,14 +62,14 @@ void encoder_update_user(uint8_t index, bool clockwise)
 		{
 				if (clockwise)
 				{
+					register_code(KC_LSFT);
 					register_code(KC_TAB);
+					unregister_code(KC_LSFT);
 					unregister_code(KC_TAB);
 				} 
 				else 
 				{
-					register_code(KC_LSFT);
 					register_code(KC_TAB);
-					unregister_code(KC_LSFT);
 					unregister_code(KC_TAB);
 				}
 		} 
@@ -133,15 +79,15 @@ void encoder_update_user(uint8_t index, bool clockwise)
 				{
 					if (clockwise) 
 					{
-						register_code(KC_TAB);
-						unregister_code(KC_TAB);
-					} 
-					else 
-					{
-						register_code(KC_LSFT);
-						register_code(KC_TAB);
-						unregister_code(KC_LSFT);
-						unregister_code(KC_TAB);
+					register_code(KC_LSFT);
+					register_code(KC_TAB);
+					unregister_code(KC_LSFT);
+					unregister_code(KC_TAB);
+				} 
+				else 
+				{
+					register_code(KC_TAB);
+					unregister_code(KC_TAB);
 					}
 				}
 			else
@@ -151,16 +97,16 @@ void encoder_update_user(uint8_t index, bool clockwise)
 					if (clockwise)
 					{
 						register_code(KC_LCTL);
-						register_code(KC_RGHT);
+						register_code(KC_LEFT);
 						unregister_code(KC_LCTL);
-						unregister_code(KC_RGHT);
+						unregister_code(KC_LEFT);
 					}
 					else
 					{
 						register_code(KC_LCTL);
-						register_code(KC_LEFT);
+						register_code(KC_RGHT);
 						unregister_code(KC_LCTL);
-						unregister_code(KC_LEFT);
+						unregister_code(KC_RGHT);
 					}
 				} 
 				else 
@@ -169,11 +115,11 @@ void encoder_update_user(uint8_t index, bool clockwise)
 					{
 						if (clockwise) 
 						{
-							tap_code(KC_VOLU);
+							tap_code(KC_VOLD);
 						}
 						else
 						{
-							tap_code(KC_VOLD);
+							tap_code(KC_VOLU);
 						}
 					}
 	/*				else
@@ -196,13 +142,13 @@ void encoder_update_user(uint8_t index, bool clockwise)
 						{
 							if (clockwise)
 							{
-								register_code(KC_PGDN);
-								unregister_code(KC_PGDN);
+								register_code(KC_PGUP);
+								unregister_code(KC_PGUP);
 							}
 							else
 							{
-								register_code(KC_PGUP);
-								unregister_code(KC_PGUP);
+								register_code(KC_PGDN);
+								unregister_code(KC_PGDN);
 							}
 						}
 					}
@@ -213,36 +159,13 @@ void encoder_update_user(uint8_t index, bool clockwise)
 	{
 		if (clockwise)
 		{
-			register_code16(C(KC_PLUS));
-			unregister_code16(C(KC_PLUS));
-		}
-		else
-		{
 			register_code16(C(KC_MINS));
 			unregister_code16(C(KC_MINS));
 		}
+		else
+		{
+			register_code16(C(KC_PLUS));
+			unregister_code16(C(KC_PLUS));
+		}
 	}
-};
-
-// Macro Establishment
-bool process_record_user(uint16_t keycode, keyrecord_t *record) 
-{
-	switch (keycode) 
-	{
-		case RIP:
-			if (record->event.pressed) 
-			{
-				// when keycode RIP is pressed
-				SEND_STRING(SS_DOWN(X_LCTRL) SS_TAP(X_A) SS_UP(X_LCTRL) SS_TAP(X_DELETE));
-			} 
-			break;
-		case GLOVIA:
-			if (record->event.pressed) 
-			{
-				// when keycode RIP is pressed
-				SEND_STRING("nschaef" SS_TAP(X_TAB) "Onenutwonder1!" SS_TAP(X_ENTER));
-			} 
-			break;
-	}
-	return true;
 };
