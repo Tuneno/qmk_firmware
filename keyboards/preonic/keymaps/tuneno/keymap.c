@@ -1,0 +1,40 @@
+// Absolutely MEGA Preonic Layout
+ 
+
+#include "Cryptor1.h"
+#include "single_encoder_preonic.h"
+
+#define LAYOUT_wrapper(...) LAYOUT_preonic_grid(__VA_ARGS__)
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+[_QWERTY] = LAYOUT_wrapper(
+QWERTY_L_R5, QWERTY_R_R5,
+QWERTY_L_R4, QWERTY_R_R4,
+QWERTY_L_R3, QWERTY_R_R3,
+QWERTY_L_R2, QWERTY_R_R2,
+QWERTY_L_R1, QWERTY_R_R1),
+
+[_LOWER] = LAYOUT_wrapper(
+LOWER_L_R5, LOWER_R_R5,
+LOWER_L_R4, LOWER_R_R4,
+LOWER_L_R3, LOWER_R_R3,
+LOWER_L_R2, LOWER_R_R2,
+LOWER_L_R1, LOWER_R_R1),
+
+[_RAISE] = LAYOUT_wrapper(
+RAISE_L_R5, RAISE_R_R5,
+RAISE_L_R4, RAISE_R_R4,
+RAISE_L_R3, RAISE_R_R3,
+RAISE_L_R2, RAISE_R_R2,
+RAISE_L_R1, RAISE_R_R1),
+
+[_GMG] = LAYOUT_wrapper(
+GMG_L_R5, GMG_R_R5,
+GMG_L_R4, GMG_R_R4,
+GMG_L_R3, GMG_R_R3,
+GMG_L_R2, GMG_R_R2,
+GMG_L_R1, GMG_R_R1)
+
+};
+
